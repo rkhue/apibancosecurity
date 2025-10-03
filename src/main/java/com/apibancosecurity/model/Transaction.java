@@ -28,6 +28,7 @@ public class Transaction {
 
     private BigDecimal amount;
 
+    @Builder.Default
     private OffsetDateTime createdAt = OffsetDateTime.now();
 }
 

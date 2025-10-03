@@ -22,6 +22,7 @@ public class Account {
 
     private String name;
 
+    @Builder.Default
     private BigDecimal balance = BigDecimal.ZERO;
 }
 

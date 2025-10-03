@@ -22,5 +22,6 @@ public class AccountRequestDTO {
 
     @NotNull
     @PositiveOrZero
+    @Builder.Default
     private BigDecimal balance = BigDecimal.ZERO;
 }
