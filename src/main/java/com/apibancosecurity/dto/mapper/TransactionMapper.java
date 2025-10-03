@@ -17,10 +17,12 @@ public class TransactionMapper extends BaseMapper<Transaction, TransactionReques
                 .to(model.getTo().getId())
                 .from(model.getFrom().getId())
                 .amount(model.getAmount())
+                .createdAt(model.getCreatedAt())
                 .build();
     }
 
     @Override
+    @Deprecated
     public Transaction toModel(TransactionRequestDTO request) {
         throw new UnsupportedOperationException("not implemented");
     }
