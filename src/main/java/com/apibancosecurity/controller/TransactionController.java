@@ -3,6 +3,7 @@ package com.apibancosecurity.controller;
 import com.apibancosecurity.dto.schemas.TransactionRequestDTO;
 import com.apibancosecurity.dto.schemas.TransactionResponseDTO;
 import com.apibancosecurity.service.TransactionService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -11,12 +12,9 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/transaction")
+@RequiredArgsConstructor
 public class TransactionController {
     private final TransactionService transactionService;
-
-    public TransactionController(TransactionService transactionService) {
-        this.transactionService = transactionService;
-    }
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)

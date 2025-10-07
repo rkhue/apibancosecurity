@@ -5,22 +5,19 @@ import com.apibancosecurity.dto.schemas.TransactionRequestDTO;
 import com.apibancosecurity.dto.schemas.TransactionResponseDTO;
 import com.apibancosecurity.repository.TransactionRepository;
 import jakarta.persistence.EntityNotFoundException;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
 @Service
+@RequiredArgsConstructor
+
 public class TransactionService {
     private final TransactionMapper transactionMapper;
     private final TransactionRepository transactionRepository;
     private final AccountService accountService;
-
-    public TransactionService(TransactionMapper transactionMapper, TransactionRepository transactionRepository, AccountService accountService) {
-        this.transactionMapper = transactionMapper;
-        this.transactionRepository = transactionRepository;
-        this.accountService = accountService;
-    }
 
     @Transactional
     public TransactionResponseDTO createTransaction(TransactionRequestDTO transactionRequestDTO) {
