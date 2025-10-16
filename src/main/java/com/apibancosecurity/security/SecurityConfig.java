@@ -1,5 +1,6 @@
 package com.apibancosecurity.security;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.Customizer;
@@ -12,7 +13,11 @@ import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
 
 @Configuration
+@RequiredArgsConstructor
 public class SecurityConfig {
+
+    private CustomAccessDeniedHandler customAccessDeniedHandler;
+
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
@@ -42,7 +47,7 @@ public class SecurityConfig {
                         .requestMatchers(("/api/user/**")).hasAnyRole(UserRole.USER, UserRole.ADMIN)
 
                 ).csrf(csrf -> csrf.disable())
-                .exceptionHandling(exception -> new CustomAccessDeniedHandler())
+                .exceptionHandling(exception -> exception.accessDeniedHandler(customAccessDeniedHandler))
                 .formLogin(Customizer.withDefaults());
 
         return http.build();
