@@ -16,7 +16,7 @@ import org.springframework.security.web.SecurityFilterChain;
 @RequiredArgsConstructor
 public class SecurityConfig {
 
-    private CustomAccessDeniedHandler customAccessDeniedHandler;
+    private final CustomAccessDeniedHandler customAccessDeniedHandler;
 
     @Bean
     public PasswordEncoder passwordEncoder() {
@@ -45,6 +45,7 @@ public class SecurityConfig {
                 authorizeHttpRequests(auth -> auth
                         .requestMatchers(("/api/admin/**")).hasRole(UserRole.ADMIN)
                         .requestMatchers(("/api/user/**")).hasAnyRole(UserRole.USER, UserRole.ADMIN)
+                        .anyRequest().authenticated()
 
                 ).csrf(csrf -> csrf.disable())
                 .exceptionHandling(exception -> exception.accessDeniedHandler(customAccessDeniedHandler))
