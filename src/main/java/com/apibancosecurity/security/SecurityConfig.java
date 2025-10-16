@@ -42,6 +42,7 @@ public class SecurityConfig {
                         .requestMatchers(("/api/user/**")).hasAnyRole(UserRole.USER, UserRole.ADMIN)
 
                 ).csrf(csrf -> csrf.disable())
+                .exceptionHandling(exception -> new CustomAccessDeniedHandler())
                 .formLogin(Customizer.withDefaults());
 
         return http.build();
