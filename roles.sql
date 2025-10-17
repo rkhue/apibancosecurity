@@ -42,4 +42,24 @@ INSERT INTO roles (name) VALUES
                              ('MANAGER');
 
 
-INSERT INTO users_roles VALUES (1, 2);
+
+-- ========================================
+-- DEPOIS DE SUBIR A API RODAR ESSE INSERT
+-- RELACIONAR USERS às ROLES
+-- Alice = ADMIN, Bob = USER, Carol = MANAGER, etc
+-- ========================================
+INSERT INTO users_roles (user_id, role_id) VALUES
+                                               (1, 1), -- alice é ADMIN
+                                               (2, 2), -- bob é USER
+                                               (3, 3), -- carol é MANAGER
+                                               (4, 2),
+                                               (4, 3),
+                                               (5, 1),
+                                               (5, 2),
+                                               (5, 3),
+                                               (6, 1),
+                                               (6, 3),
+                                               (7, 2),
+                                               (8, 2),
+                                               (9, 2),
+                                               (10, 2);
